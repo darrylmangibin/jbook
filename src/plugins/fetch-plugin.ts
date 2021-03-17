@@ -17,6 +17,16 @@ export const fetchPlugin = (inputCode: string) => {
 				};
 			});
 
+			build.onLoad({ filter: /.*/ }, async (args: any) => {
+				const cacheResult = await fileCache.getItem<esbuild.OnLoadResult>(
+					args.path
+				);
+
+				if (cacheResult) {
+					return cacheResult;
+				}
+			});
+
 			build.onLoad({ filter: /.css$/ }, async (args: any) => {
 				const cacheResult = await fileCache.getItem<esbuild.OnLoadResult>(
 					args.path
