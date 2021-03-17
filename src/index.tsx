@@ -28,6 +28,10 @@ const App = () => {
 			bundle: true,
 			write: false,
 			plugins: [unpkgPathPlugin()],
+			define: {
+				'process.env.NODE__ENV': 'production',
+				global: 'window',
+			},
 		});
 
 		setCode(result.outputFiles[0].text);
