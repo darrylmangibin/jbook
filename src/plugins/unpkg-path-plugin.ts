@@ -4,7 +4,7 @@ export const unpkgPathPlugin = () => {
 	return {
 		name: 'unpkg-path-plugin',
 		setup(build: esbuild.PluginBuild) {
-			// Handle root enty file of 'index.js'
+			// Handle root entry file of 'index.js'
 			build.onResolve({ filter: /(^index\.js$)/ }, () => {
 				return { path: 'index.js', namespace: 'a' };
 			});
@@ -18,7 +18,7 @@ export const unpkgPathPlugin = () => {
 				};
 			});
 
-			// Handle main file of a modules
+			// Handle main file of a module
 			build.onResolve({ filter: /.*/ }, async (args: any) => {
 				return {
 					namespace: 'a',
